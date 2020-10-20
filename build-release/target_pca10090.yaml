@@ -1,0 +1,229 @@
+# Zip release name
+release_name: nrf9160dk_fw_{DATE}_{SHORT_SHA}.zip
+
+# Fodler to run 'git describe' to get version
+version_folder: /ncs/nrf
+
+# Targets to build and include in release
+targets:
+  - asset_tracker_v2_ltem:
+      path: ncs/nrf/applications/asset_tracker_v2
+      platform: nrf9160dk_nrf9160_ns
+      description: Asset tracker v2 firmware for nRF9160
+      filename: nrf9160dk_asset_tracker_v2
+      configuration: !config [ltem]
+  - asset_tracker_v2_ltem_ant_ext:
+      path: ncs/nrf/applications/asset_tracker_v2
+      platform: nrf9160dk_nrf9160_ns
+      description: Asset tracker v2 firmware for nRF9160
+      filename: nrf9160dk_asset_tracker_v2
+      configuration: !config [ltem,external_gps_antenna]
+  - asset_tracker_v2_ltem_modem_trace:
+      path: ncs/nrf/applications/asset_tracker_v2
+      platform: nrf9160dk_nrf9160_ns
+      description: Asset tracker v2 firmware for nRF9160
+      filename: nrf9160dk_asset_tracker_v2
+      configuration: !config [modem_trace, ltem]
+  - asset_tracker_v2_ltem_debug_ant_ext:
+      path: ncs/nrf/applications/asset_tracker_v2
+      platform: nrf9160dk_nrf9160_ns
+      description: Asset tracker v2 firmware for nRF9160
+      filename: nrf9160dk_asset_tracker_v2
+      configuration: !config [modem_trace, ltem, external_gps_antenna]
+  - asset_tracker_v2_nbiot:
+      path: ncs/nrf/applications/asset_tracker_v2
+      platform: nrf9160dk_nrf9160_ns
+      description: Asset tracker v2 firmware for nRF9160
+      filename: nrf9160dk_asset_tracker_v2
+      configuration: !config [nbiot]
+  - asset_tracker_v2_nbiot_ant_ext:
+      path: ncs/nrf/applications/asset_tracker_v2
+      platform: nrf9160dk_nrf9160_ns
+      description: Asset tracker v2 firmware for nRF9160
+      filename: nrf9160dk_asset_tracker_v2
+      configuration: !config [nbiot,external_gps_antenna]
+  - asset_tracker_v2_nbiot_modem_trace:
+      path: ncs/nrf/applications/asset_tracker_v2
+      platform: nrf9160dk_nrf9160_ns
+      description: Asset tracker v2 firmware for nRF9160
+      filename: nrf9160dk_asset_tracker_v2
+      configuration: !config [modem_trace, nbiot]
+  - asset_tracker_v2_nbiot_debug_ant_ext:
+      path: ncs/nrf/applications/asset_tracker_v2
+      platform: nrf9160dk_nrf9160_ns
+      description: Asset tracker v2 firmware for nRF9160
+      filename: nrf9160dk_asset_tracker_v2
+      configuration: !config [modem_trace, nbiot, external_gps_antenna]
+  - asset_tracker_v2_nbiot_legacy_pco:
+      path: ncs/nrf/applications/asset_tracker_v2
+      platform: nrf9160dk_nrf9160_ns
+      description: Asset tracker v2 firmware for nRF9160
+      filename: nrf9160dk_asset_tracker_v2
+      configuration: !config [nbiot, legacy_pco]
+  - asset_tracker_v2_nbiot_legacy_pco_ant_ext:
+      path: ncs/nrf/applications/asset_tracker_v2
+      platform: nrf9160dk_nrf9160_ns
+      description: Asset tracker v2 firmware for nRF9160
+      filename: nrf9160dk_asset_tracker_v2
+      configuration: !config [nbiot, legacy_pco, external_gps_antenna]
+  - asset_tracker_v2_nbiot_legacy_pco_modem_trace:
+      path: ncs/nrf/applications/asset_tracker_v2
+      platform: nrf9160dk_nrf9160_ns
+      description: Asset tracker v2 firmware for nRF9160
+      filename: nrf9160dk_asset_tracker_v2
+      configuration: !config [modem_trace, nbiot, legacy_pco]
+  - asset_tracker_v2_nbiot_legacy_pco_debug_ant_ext:
+      path: ncs/nrf/applications/asset_tracker_v2
+      platform: nrf9160dk_nrf9160_ns
+      description: Asset tracker v2 firmware for nRF9160
+      filename: nrf9160dk_asset_tracker_v2
+      configuration: !config [modem_trace, nbiot, legacy_pco, external_gps_antenna]
+  
+
+  - thingy_pca10090_ltem:
+      path: ncs/nrf/applications/asset_tracker
+      platform: nrf9160dk_nrf9160_ns
+      description: Asset tracker firmware for nRF9160
+      filename: nrf9160dk_asset_tracker
+      configuration: !config [ltem]
+
+  - thingy_pca10090_ltem_ant_ext:
+      path: ncs/nrf/applications/asset_tracker
+      platform: nrf9160dk_nrf9160_ns
+      filename: nrf9160dk_asset_tracker
+      description: Asset tracker firmware for nRF9160
+      configuration: !config [ltem, external_gps_antenna] 
+      
+  - thingy_pca10090_ltem_modem_trace:
+      path: ncs/nrf/applications/asset_tracker
+      platform: nrf9160dk_nrf9160_ns
+      filename: nrf9160dk_asset_tracker
+      description: Asset tracker firmware for nRF9160
+      configuration: !config [modem_trace, ltem] 
+
+  - thingy_pca10090_ltem_debug_ant_ext:
+      path: ncs/nrf/applications/asset_tracker
+      platform: nrf9160dk_nrf9160_ns
+      filename: nrf9160dk_asset_tracker
+      description: Asset tracker firmware for nRF9160
+      configuration: !config [modem_trace, ltem, external_gps_antenna] 
+
+  - thingy_pca10090_nbiot:
+      path: ncs/nrf/applications/asset_tracker
+      platform: nrf9160dk_nrf9160_ns
+      filename: nrf9160dk_asset_tracker
+      description: Asset tracker firmware for nRF9160
+      configuration: !config [nbiot] 
+
+  - thingy_pca10090_nbiot_ext_ant:
+      path: ncs/nrf/applications/asset_tracker
+      platform: nrf9160dk_nrf9160_ns
+      filename: nrf9160dk_asset_tracker
+      description: Asset tracker firmware for nRF9160
+      configuration: !config [nbiot, external_gps_antenna]
+
+  - thingy_pca10090_nbiot_modem_trace:
+      path: ncs/nrf/applications/asset_tracker
+      platform: nrf9160dk_nrf9160_ns
+      filename: nrf9160dk_asset_tracker
+      description: Asset tracker firmware for nRF9160
+      configuration: !config [modem_trace, nbiot]
+  
+  - thingy_pca10090_nbiot_debug_ext_ant:
+      path: ncs/nrf/applications/asset_tracker
+      platform: nrf9160dk_nrf9160_ns
+      filename: nrf9160dk_asset_tracker
+      description: Asset tracker firmware for nRF9160
+      configuration: !config [modem_trace, nbiot, external_gps_antenna]
+
+  - thingy_pca10090_nbiot_legacy_pco:
+      path: ncs/nrf/applications/asset_tracker
+      platform: nrf9160dk_nrf9160_ns
+      filename: nrf9160dk_asset_tracker
+      description: Asset tracker firmware for nRF9160
+      configuration: !config [nbiot, legacy_pco]
+
+  - thingy_pca10090_nbiot_legacy_pco_ext_ant:
+      path: ncs/nrf/applications/asset_tracker
+      platform: nrf9160dk_nrf9160_ns
+      filename: nrf9160dk_asset_tracker
+      description: Asset tracker firmware for nRF9160
+      configuration: !config [nbiot, legacy_pco, external_gps_antenna]
+  
+  - thingy_pca10090_nbiot_legacy_pco_modem_trace:
+      path: ncs/nrf/applications/asset_tracker
+      platform: nrf9160dk_nrf9160_ns
+      filename: nrf9160dk_asset_tracker
+      description: Asset tracker firmware for nRF9160
+      configuration: !config [modem_trace, nbiot, legacy_pco]
+
+  - thingy_pca10090_nbiot_legacy_pco_debug_ext_ant:
+      path: ncs/nrf/applications/asset_tracker
+      platform: nrf9160dk_nrf9160_ns
+      filename: nrf9160dk_asset_tracker
+      description: Asset tracker firmware for nRF9160
+      configuration: !config [modem_trace, nbiot, legacy_pco, external_gps_antenna]
+  
+  - at_client_pca10090:
+      path: ncs/nrf/samples/nrf9160/at_client
+      platform: nrf9160dk_nrf9160_ns
+      filename: nrf9160dk_at_client
+      description: Firmware for direct modem communication
+      configuration: !config [mcuboot]
+
+  - at_client_pca10090_ext_ant:
+      path: ncs/nrf/samples/nrf9160/at_client
+      platform: nrf9160dk_nrf9160_ns
+      filename: nrf9160dk_at_client
+      description: Firmware for direct modem communication
+      configuration: !config [mcuboot, external_gps_antenna]
+  
+  - slm_pca10090:
+      path: ncs/nrf/applications/serial_lte_modem
+      platform: nrf9160dk_nrf9160_ns
+      filename: serial_lte_modem
+      description: Serial LTE modem
+      configuration: !config []
+
+external_files:
+  modem:
+    url: https://www.nordicsemi.com/-/media/Software-and-other-downloads/Dev-Kits/nRF9160-DK/nRF9160-modem-FW/mfw_nrf9160_1.3.0.zip
+    description: Modem firmware, update via nRFConnect for Desktop Programmer application
+
+generated_files:
+  readme:
+    name: CONTENTS.txt
+    text: |
+      These files were built with nRF Connect SDK version {VERSION}
+      from sdk-nrf repository (https://github.com/nrfconnect/sdk-nrf)
+      
+      Full commit SHA: {SHA}
+
+      Folder contents:
+      img_app_bl/
+        - Full application images including bootloader.
+        - These files can be used with:
+          - nRF Connect Programmer (only with SEGGER J-Link or another debug probe)
+          - nrfjprog CLI
+      img_fota_dfu_hex/
+        - These images contain only application and bootloader is not included.
+        - Images are in HEX format.
+        - These files can be used with nRF Connect Programmer (only via USB bootloader).
+      img_fota_dfu_bin/
+        - These images contain only application and bootloader is not included.
+        - Images are in binary format.
+        - These files can be used with:
+          - Over-the-air update, for example, via nRF Cloud, Azure or AWS.
+          - mcumgr CLI (via USB bootloader only)
+
+      The following folders contain images configured for external GPS antenna, for use with nRF9160 DK v0.15.0 and higher versions:
+        - img_app_bl/external_gps_antenna
+        - img_fota_dfu_hex/external_gps_antenna
+        - img_fota_dfu_bin/external_gps_antenna
+
+      The following folders contain images configured for modem debugging:
+        - img_app_bl/debug 
+        - img_fota_dfu_hex/debug
+        - img_fota_dfu_bin/debug
+
+      {release_contents}

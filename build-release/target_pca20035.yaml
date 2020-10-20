@@ -1,0 +1,150 @@
+# Zip release name
+release_name: thingy91_fw_{DATE}_{SHORT_SHA}.zip
+
+# Fodler to run 'git describe' to get version
+version_folder: ncs/nrf
+
+# Targets to build and include in release
+targets:
+  - connectivity_bridge:
+      path: ncs/nrf/applications/connectivity_bridge
+      platform: thingy91_nrf52840
+      filename: thingy91_nrf52_connectivity_bridge
+      description: Connectivity bridge for the nrf52
+      configuration: !config []
+
+  - asset_tracker_v2_ltem:
+      path: ncs/nrf/applications/asset_tracker_v2
+      platform: thingy91_nrf9160_ns
+      filename: thingy91_asset_tracker_v2
+      description: Asset tracker v2 firmware for nRF9160
+      configuration: !config [ltem]
+
+  - asset_tracker_v2_ltem_debug:
+      path: ncs/nrf/applications/asset_tracker_v2
+      platform: thingy91_nrf9160_ns
+      filename: thingy91_asset_tracker_v2
+      description: Asset tracker v2 firmware for nRF9160
+      configuration: !config [modem_trace, ltem]
+
+  - asset_tracker_v2_nbiot_legacy_pco:
+      path: ncs/nrf/applications/asset_tracker_v2
+      platform: thingy91_nrf9160_ns
+      filename: thingy91_asset_tracker_v2
+      description: Asset tracker v2 firmware for nRF9160
+      configuration: !config [nbiot, legacy_pco]
+
+  - asset_tracker_v2_nbiot_legacy_pco_debug:
+      path: ncs/nrf/applications/asset_tracker_v2
+      platform: thingy91_nrf9160_ns
+      filename: thingy91_asset_tracker_v2
+      description: Asset tracker v2 firmware for nRF9160
+      configuration: !config [modem_trace, nbiot, legacy_pco]
+
+  - asset_tracker_v2_nbiot:
+      path: ncs/nrf/applications/asset_tracker_v2
+      platform: thingy91_nrf9160_ns
+      filename: thingy91_asset_tracker_v2
+      description: Asset tracker v2 firmware for nRF9160
+      configuration: !config [nbiot]
+
+  - asset_tracker_v2_nbiot_debug:
+      path: ncs/nrf/applications/asset_tracker_v2
+      platform: thingy91_nrf9160_ns
+      filename: thingy91_asset_tracker_v2
+      description: Asset tracker v2 firmware for nRF9160
+      configuration: !config [modem_trace, nbiot]
+
+
+  - asset_tracker_v1_ltem:
+      path: ncs/nrf/applications/asset_tracker
+      platform: thingy91_nrf9160_ns
+      filename: thingy91_asset_tracker
+      description: Asset tracker firmware for nRF9160
+      configuration: !config [ltem, bsec]
+
+  - asset_tracker_v1_ltem_debug:
+      path: ncs/nrf/applications/asset_tracker
+      platform: thingy91_nrf9160_ns
+      filename: thingy91_asset_tracker
+      description: Asset tracker firmware for nRF9160
+      configuration: !config [modem_trace, ltem, bsec]
+
+  - asset_tracker_v1_nbiot_legacy_pco:
+      path: ncs/nrf/applications/asset_tracker
+      platform: thingy91_nrf9160_ns
+      filename: thingy91_asset_tracker
+      description: Asset tracker firmware for nRF9160
+      configuration: !config [nbiot, bsec, legacy_pco]
+
+  - asset_tracker_v1_nbiot_legacy_pco_debug:
+      path: ncs/nrf/applications/asset_tracker
+      platform: thingy91_nrf9160_ns
+      filename: thingy91_asset_tracker
+      description: Asset tracker firmware for nRF9160
+      configuration: !config [modem_trace, nbiot, bsec, legacy_pco]
+
+  - asset_tracker_v1_nbiot:
+      path: ncs/nrf/applications/asset_tracker
+      platform: thingy91_nrf9160_ns
+      filename: thingy91_asset_tracker
+      description: Asset tracker firmware for nRF9160
+      configuration: !config [bsec, nbiot]
+
+  - asset_tracker_v1_nbiot_debug:
+      path: ncs/nrf/applications/asset_tracker
+      platform: thingy91_nrf9160_ns
+      filename: thingy91_asset_tracker
+      description: Asset tracker firmware for nRF9160
+      configuration: !config [modem_trace, bsec, nbiot]
+
+  - at_client_pca20035:
+      path: ncs/nrf/samples/nrf9160/at_client
+      platform: thingy91_nrf9160_ns
+      filename: thingy91_at_client
+      description: Firmware for direct modem communication
+      configuration: !config [mcuboot]
+  - slm_pca20035:
+      path: ncs/nrf/applications/serial_lte_modem
+      platform: thingy91_nrf9160_ns
+      filename: serial_lte_modem
+      description: Serial LTE modem
+      configuration: !config []
+
+external_files:
+  modem:
+    url: https://www.nordicsemi.com/-/media/Software-and-other-downloads/Dev-Kits/nRF9160-DK/nRF9160-modem-FW/mfw_nrf9160_1.3.0.zip
+    description: Modem firmware, updated through nRF Connect for Desktop
+
+generated_files:
+  contents:
+    name: CONTENTS.txt
+    text: |
+      These files were built with nRF Connect SDK version {VERSION}
+      from sdk-nrf repository (https://github.com/nrfconnect/sdk-nrf)
+      
+      Full commit SHA: {SHA}
+
+      Folder contents:
+      img_app_bl/
+        - Full application images including bootloader.
+        - These files can be used with:
+          - nRF Connect Programmer (only with SEGGER J-Link or another debug probe)
+          - nrfjprog CLI
+      img_fota_dfu_hex/
+        - These images contain only application and bootloader is not included.
+        - Images are in HEX format.
+        - These files can be used with nRF Connect Programmer (only via USB bootloader).
+      img_fota_dfu_bin/
+        - These images contain only application and bootloader is not included.
+        - Images are in binary format.
+        - These files can be used with:
+          - Over-the-air update, for example, via nRF Cloud, Azure or AWS.
+          - mcumgr CLI (via USB bootloader only)
+
+      The following folders contain images configured for modem debugging:
+        - img_app_bl/debug 
+        - img_fota_dfu_hex/debug
+        - img_fota_dfu_bin/debug
+
+      {release_contents}

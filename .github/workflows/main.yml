@@ -1,0 +1,35 @@
+on: [push, workflow_dispatch]
+name: Nightly build
+
+jobs:
+  build:
+    strategy:
+      matrix:
+        target: [pca10090, pca20035]
+    runs-on: ubuntu-latest
+    container: 
+      image:  ghcr.io/jorgenmk/build:latest
+      credentials:
+        username: jorgenmk
+        password: ${{ secrets.DOCKER_CONTAINER_REGISTRY_TOKEN }}
+    name: Build
+    steps:
+    - name: west update
+      run: |
+        pwd
+        cd /ncs/nrf
+        git clean -xdf
+        git pull
+        west update
+    - name: build
+      run: |
+        cd /
+        mkdir outcomes
+        python3 build-release/create_release.py ${{ matrix.target }}
+
+    # Use the output from the `hello` step
+    - name: deploy
+      uses: actions/upload-artifact@v2
+      with:
+        name: build-${{ matrix.target }}
+        path: /outcomes/*.zip

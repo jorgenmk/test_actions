@@ -1,0 +1,55 @@
+configs:
+  mcuboot:
+    cmake_configs:
+      - CONFIG_BOOTLOADER_MCUBOOT=y
+  ltem:
+    extra_name: ltem
+  nbiot:
+    cmake_configs:
+      - CONFIG_LTE_NETWORK_MODE_LTE_M_GPS=n
+      - CONFIG_LTE_NETWORK_MODE_NBIOT_GPS=y
+    extra_name: nbiot
+    extra_desc: NB-IoT network mode
+  legacy_pco:
+    cmake_configs:
+      - CONFIG_PDN=y
+      - CONFIG_PDN_LEGACY_PCO=y
+    extra_name: legacy_pco
+    extra_desc: legacy PCO
+  modem_trace:
+    cmake_configs:
+      - CONFIG_NRF_MODEM_LIB_TRACE_ENABLED=y
+    extra_name: debug
+    extra_path: debug
+    extra_desc: modem debug enabled
+  external_gps_antenna:
+    cmake_configs:
+      - CONFIG_NRF9160_GPS_ANTENNA_EXTERNAL=y
+    extra_name: ext_gps
+    extra_path: external_gps_antenna
+    extra_desc: external gps antenna
+  bsec:
+    cmake_configs:
+      - CONFIG_BME680=n
+      - CONFIG_USE_BME680_BSEC=y
+      - CONFIG_BOSCH_BSEC_LIBRARY_PATH="/bsec/BSEC_1.4.8.0_Generic_Release"
+  bridge_ble_on:
+    cmake_configs:
+      - CONFIG_BRIDGE_BLE_ALWAYS_ON=y
+    extra_name: fooname
+    extra_path: foopath
+    extra_desc: always-on BLE
+
+files:
+  hex:
+    pattern: /**/merged.hex
+    postfix: _{DATE}_{SHORT_SHA}.hex
+    prefix: img_app_bl/
+  dfu_app:
+    pattern: /**/app_update.bin
+    postfix: _{DATE}_{SHORT_SHA}.bin
+    prefix: img_fota_dfu_bin/
+  dfu_app_hex:
+    pattern: /**/app_signed.hex
+    postfix: _{DATE}_{SHORT_SHA}.hex
+    prefix: img_fota_dfu_hex/
