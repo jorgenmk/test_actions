@@ -1,9 +1,9 @@
 on: [push, workflow_dispatch]
 
 jobs:
-  hello_world_job:
+  nightly-release:
     runs-on: ubuntu-latest
-    name: A job to say hello
+    name: Build release package
     steps:
     - name: Hello world action step
       id: hello

@@ -35,7 +35,7 @@ RUN mkdir ncs \
 
 ENV GNUARMEMB_TOOLCHAIN_PATH=/gnuarmemb/gcc-arm-none-eabi-9-2019-q4-major
 COPY entrypoint.sh /entrypoint.sh
-COPY bsec_1-4-8-0_generic_release.zip .
+#COPY bsec_1-4-8-0_generic_release.zip .
 #RUN mkdir bzip \
 #  && unzip bsec_1-4-8-0_generic_release.zip 
 # Code file to execute when the docker container starts up (`entrypoint.sh`)
