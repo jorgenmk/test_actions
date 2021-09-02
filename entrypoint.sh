@@ -3,6 +3,7 @@
 echo "Hello $1"
 time=$(date)
 echo "::set-output name=time::$time"
+ls
 ls gnuarmemb
 ls ncs
 ls ncs/zephyr
