@@ -4,8 +4,10 @@ import io
 import zipfile
 import pprint
 
+token = os.getenv("THINGY91_ARTIFACT_TOKEN_GH")
+
 url = "https://api.github.com/repos/jorgenmk/test_actions/actions/artifacts"
-headers = {"Accept":"application/json", "Authorization": "token mytoken"}
+headers = {"Accept":"application/json", "Authorization": f"token {token}"}
 
 try:
 	os.mkdir("release")
