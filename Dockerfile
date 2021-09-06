@@ -15,12 +15,12 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
   make \
   unzip \
   ninja-build \
-  cmake \
   python3 \
   python3-pip \
   && rm -rf /var/lib/apt/lists/*
 
-RUN pip3 install -r https://raw.githubusercontent.com/zephyrproject-rtos/zephyr/master/scripts/requirements.txt \
+RUN pip3 install -r https://raw.githubusercontent.com/zephyrproject-rtos/zephyr/master/scripts/requirements.txt
+RUN pip3 install cmake
 
 RUN wget --no-verbose https://developer.arm.com/-/media/Files/downloads/gnu-rm/9-2019q4/gcc-arm-none-eabi-9-2019-q4-major-x86_64-linux.tar.bz2 \
     && mkdir /gnuarmemb \
