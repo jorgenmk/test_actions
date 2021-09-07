@@ -30,7 +30,6 @@ jobs:
         cd /ncs/nrf
         git clean -xdf
         git pull
-    
     - name: checkout branch
       if: ${{ github.events.inputs.branch != 'master' }}
       id: checkoutstage
@@ -38,26 +37,17 @@ jobs:
         cd /ncs/nrf
         git fetch origin
         git checkout ${{ github.events.inputs.branch }}
-        echo "::set-output name=action_fruit::strawberry"
     - name: west update
       run: |
         cd /ncs
         west update
-    
     - name: build
       id: buildstage
       run: |
         cd /
         mkdir outcomes
         python3 build-release/create_release.py ${{ matrix.target }}
-        echo "::set-output name=releasepath::`ls outcomes/*.zip`"
-    - name: test
-      run: |
-        cd /
-        echo foo ${{ steps.buildstage.releasepath }} bar
-        echo foo ${{ steps.checkoutstage.action_fruit }} bar
-        pwd
-        ls
+        echo "::set-output name=releasepath::/`ls outcomes/*.zip`"
     - name: nightly-release
       if: ${{ github.events.inputs.branch != 'master' }}
       uses: WebFreak001/deploy-nightly@v1.1.0
@@ -66,7 +56,7 @@ jobs:
       with:
         upload_url: https://uploads.github.com/repos/jorgenmk/test_actions/releases/49110144/assets{?name,label}
         release_id: 49110144
-        asset_path: ${{ steps.buildstage.releasepath }}
-        asset_name: nightly-${{ matrix.target }}.zip # name to upload the release as, use $$ to insert date (YYYYMMDD) and 6 letter commit hash
-        asset_content_type: application/zip # required by GitHub API
+        asset_path: ${{ steps.buildstage.outputs.releasepath }}
+        asset_name: nightly-${{ matrix.target }}.zip
+        asset_content_type: application/zip
         max_releases: 7
