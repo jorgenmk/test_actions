@@ -2,10 +2,14 @@ on:
   schedule:
     - cron:  0 21 * * 1-5
   workflow_dispatch:
+    inputs:
+      branch:
+        description: 'Git branch or tag to run'     
+        required: true
+        default: 'master'
   push:
 
 name: Nightly build
-
 
 jobs:
   build:
@@ -20,22 +24,49 @@ jobs:
         password: ${{ secrets.DOCKER_CONTAINER_REGISTRY_TOKEN }}
     name: Build
     steps:
-    - name: west update
+    - name: git pull
       run: |
         pwd
         cd /ncs/nrf
         git clean -xdf
         git pull
+    
+    - name: checkout branch
+      if: ${{ github.events.inputs.branch != 'master' }}
+      id: checkoutstage
+      run: |
+        cd /ncs/nrf
+        git fetch origin
+        git checkout ${{ github.events.inputs.branch }}
+        echo "::set-output name=action_fruit::strawberry"
+    - name: west update
+      run: |
+        cd /ncs
         west update
+    
     - name: build
+      id: buildstage
       run: |
         cd /
         mkdir outcomes
         python3 build-release/create_release.py ${{ matrix.target }}
-
-    # Use the output from the `hello` step
-    - name: deploy
-      uses: actions/upload-artifact@v2
+        echo "::set-output name=releasepath::`ls outcomes/*.zip`"
+    - name: test
+      run: |
+        cd /
+        echo foo ${{ steps.buildstage.releasepath }} bar
+        echo foo ${{ steps.checkoutstage.action_fruit }} bar
+        pwd
+        ls
+    - name: nightly-release
+      if: ${{ github.events.inputs.branch != 'master' }}
+      uses: WebFreak001/deploy-nightly@v1.1.0
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        name: build-${{ matrix.target }}
-        path: /outcomes/*.zip
+        upload_url: https://uploads.github.com/repos/jorgenmk/test_actions/releases/49110144/assets{?name,label}
+        release_id: 49110144
+        asset_path: ${{ steps.buildstage.releasepath }}
+        asset_name: nightly-${{ matrix.target }}.zip # name to upload the release as, use $$ to insert date (YYYYMMDD) and 6 letter commit hash
+        asset_content_type: application/zip # required by GitHub API
+        max_releases: 7
