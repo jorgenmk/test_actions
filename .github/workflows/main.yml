@@ -37,6 +37,7 @@ jobs:
         cd /ncs/nrf
         git fetch origin
         git checkout ${{ github.events.inputs.branch }}
+        echo "::set-output name=gitdesc::/`git describe`"
     - name: west update
       run: |
         cd /ncs
