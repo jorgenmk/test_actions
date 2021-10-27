@@ -14,7 +14,7 @@ jobs:
         target: [pca10090, pca20035]
     runs-on: ubuntu-latest
     container: 
-      image:  ghcr.io/jorgenmk/build:latest
+      image:  ghcr.io/jorgenmk/build:1.0
       credentials:
         username: jorgenmk
         password: ${{ secrets.DOCKER_CONTAINER_REGISTRY_TOKEN }}
