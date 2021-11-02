@@ -35,7 +35,7 @@ jobs:
 
     # Use the output from the `hello` step
     - name: deploy
-      uses: actions/upload-artifact@v2
+      uses: softprops/action-gh-release@v1
       with:
-        name: build-${{ matrix.target }}
-        path: /outcomes/*.zip
+        name: nightly-${{ matrix.target }}
+        files: /outcomes/*.zip
