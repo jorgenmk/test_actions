@@ -22,7 +22,6 @@ jobs:
     steps:
     - name: west update
       run: |
-        pwd
         cd /ncs/nrf
         git clean -xdf
         git pull
